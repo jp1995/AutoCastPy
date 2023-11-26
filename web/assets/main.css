@@ -1,0 +1,142 @@
+body {
+    background-color: #131314;
+    color: #d3d3d3;
+
+    font-family: Segoe UI, Roboto, Helvetica, sans-serif;
+}
+h1 {
+    margin-top: 3vh;
+}
+
+.inlinetables {
+    display: inline-grid;
+    position: relative;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 3fr);
+    grid-column-gap: 17vh;
+    margin-top: 11vh;
+    margin-left: 4vh;
+    width: 90%;
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1500px) {
+    .inlinetables {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 14vh;
+        margin-left: 0;
+    }
+    .trackertable {
+        justify-self: center;
+    }
+    .trackertable td:nth-child(n+2):nth-child(-n+4) {
+        width: 5vw;
+    }
+    .mmrtable {
+        margin-top: 6vh;
+        width: 40% !important;
+        justify-self: center;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .inlinetables {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    .mmrtable {
+        justify-self: center;
+    }
+}
+
+a:link {
+    text-decoration: none;
+    color: #c7c5c5;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #c7c5c5;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #c7c5c5;
+}
+
+a:active {
+    text-decoration: underline;
+    color: #c7c5c5;
+}
+span {
+    margin-left: -1vh;
+}
+
+.topnav {
+    display: flex;
+    overflow: hidden;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1c1c1c;
+    height: 6vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.rl_icon {
+    display: flex;
+    align-items: center;
+    width: 5vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+}
+
+.topnavbutton {
+    height: 6vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    background-color: #252526;
+    color: #d3d3d3;
+    border: none;
+    display: inline-grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+.play {
+    width: 3vh;
+    height: 3vh;
+    padding-right: 1vh;
+}
+
+.title {
+    font-size: 11pt;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.title.visible {
+    opacity: 1;
+}
+
+.git_container {
+    margin-left: auto;
+}
+
+.github {
+    display: flex;
+    align-items: center;
+    width: 3.2vh;
+    margin-right: 2vh;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .title {
+        font-size: 20pt;
+    }
+
+}
