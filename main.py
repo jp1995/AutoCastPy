@@ -17,6 +17,7 @@ class RMCC:
         self.webserver = Process(target=run_webserver, args=(self.q,))
         self.driver = self.driverConf()
         self.user_script = Thread
+        self.status = True
         self.castID = ''
         self.mappings = {}
         self.mappings_path = 'userscripts/mapping.json'
@@ -98,6 +99,7 @@ class RMCC:
     def beginCast(self):
         log.info(f"Starting mirroring to {self.ccName}")
         self.driver.start_tab_mirroring(self.ccName)
+        self.status = True
 
     """
     Dynamically runs the appropriate userscript.
@@ -140,6 +142,7 @@ class RMCC:
 
         log.info('We appear to not be casting at the moment. Closing the driver.')
         self.driver.close()
+        self.status = False
         return False
 
     """
@@ -162,7 +165,7 @@ class RMCC:
                     self.beginCast()
                     self.runScript(self.URL)
 
-            if minute == 60:
+            if minute == 60 and self.status:
                 self.healthCheck()
                 minute = 0
 

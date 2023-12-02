@@ -2,22 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RMCC</title>
+    <title>AutoCastPy</title>
     <link rel="stylesheet" href="assets/main.css">
     <script src="assets/index.js"></script>
 </head>
 <body>
 
     <div class="topnav">
-        <p>RMCC</p>
+        <p class="rl_icon">AutoCastPy</p>
         <a href="/"><button class="topnavbutton"><img class="play" src="assets/icons/play2.png" alt="play"><p class="title"></p></button></a>
-        <div class="git_container"><a href="https://github.com/jp1995/rpiRMCC"><img class="github" src="assets/icons/github.svg" alt="github"></a></div>
+        <div class="git_container"><a href="https://github.com/jp1995/AutoCastPy"><img class="github" src="assets/icons/github.svg" alt="github"></a></div>
     </div>
 
-    <div class="inlinetables">
-        <button onclick="sendData(this)" data-url="https://streamfare.com/al-jazeera-live-stream">Al-Jazeera</button>
-        <button onclick="sendData(this)" data-url="https://streamfare.com/sky-news-live-stream">Sky News</button>
+    <div class="input">
+        <input type="text" id="inputboxfield" oninput="setDataFromInput()" placeholder="Enter URL">
+        <button id="inputButton" onclick="sendData(this)" data-url="">Cast</button>
     </div>
+
+    <div class="categories">
+        <div class="category">
+            <div class="category-header">
+                <button class="category-button" onclick="toggleCategory(this)">Category 1</button>
+            </div>
+            <div class="category-content">
+                 <div class="inlinetables">
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link1.com">Link 1</button>
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link2.com">Link 2</button>
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link3.com">Link 3</button>
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link4.com">Link 4</button>
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link4.com">Link 5</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                <button class="category-button" onclick="toggleCategory(this)">Category 2</button>
+            </div>
+            <div class="category-content">
+                 <div class="inlinetables">
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link1.com">Link 1</button>
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link2.com">Link 2</button>
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link3.com">Link 3</button>
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link4.com">Link 4</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                <button class="category-button" onclick="toggleCategory(this)">Category 3</button>
+            </div>
+            <div class="category-content">
+                 <div class="inlinetables">
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link1.com">Link 1</button>
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link2.com">Link 2</button>
+                    <button id="linkButton" onclick="sendData(this)" data-url="https://link3.com">Link 3</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </body>
 </html>
