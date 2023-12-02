@@ -1,6 +1,8 @@
 import time
 from selenium.webdriver.common.action_chains import ActionChains
 
+""" Generally it's of course better to target elements by their id, class etc but sometimes this doesn't work. """
+
 
 def run(driver, url):
     driver.get(url)
@@ -15,7 +17,7 @@ def run(driver, url):
 
     # Start the player
     time.sleep(2)
-    action.move_by_offset(926,458)
+    action.move_by_offset(926, 458)
     action.click()
     action.perform()
     action.move_by_offset(-926, -458)

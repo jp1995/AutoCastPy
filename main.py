@@ -6,6 +6,7 @@ from threading import Thread
 from selenium import webdriver
 from web.app import run_webserver
 from multiprocessing import Process, Queue
+from utility.checkCD import checkCD
 from utility.logging_setup import log, logWipe
 
 
@@ -146,6 +147,8 @@ class RMCC:
     """
     def main(self):
         logWipe()
+        if not checkCD():
+            quit()
         self.webserver.start()
         self.loadMappings()
         minute = 0

@@ -1,4 +1,5 @@
 {
-  "streamfare.com/al-jazeera": "aljazeera",
-  "streamfare": "streamfare"
+  "example.com/subpage": "subpage",
+  "example.com": "example",
+  "whatever": "whatever"
 }
