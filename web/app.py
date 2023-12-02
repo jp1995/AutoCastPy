@@ -1,28 +1,32 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
+from flask_socketio import SocketIO
+from utility.logging_setup import log
 import socket
-import json
 import os
 
-data = None
-matchData = []
-playlistData = None
 
-
-def run_webserver(mmrq, matchq, playlistq):
+def run_webserver(q):
     os.chdir('./web/')
     app = Flask(__name__, template_folder='.', static_folder='assets')
-    app.jinja_env.auto_reload = True
+    socketio = SocketIO(app, cors_allowed_origins='*')
+    port = 5001
 
     log.info("Webserver started")
-    log.info("* Running on http://127.0.0.1:5000\n"
-             f"* Running on http://{get_local_ip()}:5000\n")
+    log.info(f"* Running on http://127.0.0.1:{port}\n"
+             f"* Running on http://{get_local_ip()}:{port}\n")
 
     @app.route('/')
     def index():
         render_table = render_template('index.html')
         return render_table
 
-    app.run()
+    @app.route('/receive_data', methods=['POST'])
+    def receive_data():
+        data = request.json
+        q.put(data)
+        return jsonify({"message": "Data received successfully!"})
+
+    socketio.run(app, host='0.0.0.0', port=port)
 
 
 def get_local_ip():

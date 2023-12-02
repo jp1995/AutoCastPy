@@ -1,37 +1,20 @@
-$(function() {
+function sendData(button) {
+    // Retrieving the URL from the button's data attribute
+    let data = button.getAttribute('data-url');
 
-    //  Doesn't work on template update atm
-    let titletransition = document.querySelector(".title");
-    setTimeout(function() {
-        titletransition.classList.add("visible");
-    }, 100);
-
-    const socket = io.connect('/');
-
-    socket.on("connect",() => {
-        // the update loop is started
-        socket.emit('request_mmr');
-        socket.emit('request_match')
-        socket.emit('request_playlist')
+    // Making a fetch request to your Flask server
+    fetch('/receive_data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
     })
-
-    socket.on('reply_mmr_update', function(data) {
-        console.log(data)
-        $('.mmrtable').html(data.html);
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
     });
-
-    socket.on('reply_match_update', function(data) {
-        console.log(data)
-        $('.trackertable').html(data.html);
-    });
-
-    socket.on('reply_playlist_update', function(data) {
-        console.log(data)
-        $('.title').html(data.html);
-    });
-
-    // refresh doesn't break the site
-    socket.emit("rq_current_playlist");
-    socket.emit("rq_current_mmr");
-    socket.emit("rq_current_match");
-});
+}
