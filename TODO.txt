@@ -1,4 +1,0 @@
-// TODO
-
-This is a program that receives URL inputs from a webserver subprocess, casts a tab with the given URL
-to a chromecast device and then excecutes user scripts with necessary automation on the site.
