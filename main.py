@@ -13,6 +13,10 @@ from utility.logging_setup import log, logWipe
 class RMCC:
     def __init__(self):
         self.scripts = self.loadScripts()
+        self.executable = checkCD()
+        if not self.executable:
+            quit()
+
         self.q = Queue()
         self.webserver = Process(target=run_webserver, args=(self.q,))
         self.driver = self.driverConf()
@@ -27,14 +31,14 @@ class RMCC:
     """
     The configuration of the selenium webdriver.
     """
-    @staticmethod
-    def driverConf():
+    def driverConf(self):
         opts = webdriver.ChromeOptions()
         opts.add_argument("--disable-dev-shm-usage")
         opts.add_argument('--force-dark-mode')
         opts.add_argument('--headless=new')
 
-        driver = webdriver.Chrome(options=opts)
+        service = webdriver.ChromeService(executable_path=f'./{self.executable}')
+        driver = webdriver.Chrome(service=service, options=opts)
         driver.set_window_size(1920, 1200)
 
         return driver
@@ -150,8 +154,6 @@ class RMCC:
     """
     def main(self):
         logWipe()
-        if not checkCD():
-            quit()
         self.webserver.start()
         self.loadMappings()
         minute = 0
